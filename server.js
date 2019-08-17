@@ -4,7 +4,11 @@ var tcpp = require('tcp-ping');
 
 
 
-tcpp.ping({ address: '172.217.1.142'}, function(err, data) {
+tcpp.probe('192.168.2.1',7, (err,data) => {
+    if(err)
+    {
+      console.log()
+    }
     console.log("Ayyy");
     console.log(data);
 });

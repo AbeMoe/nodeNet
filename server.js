@@ -10,11 +10,24 @@ var hosts = ['192.168.1.1', 'google.com', 'yahoo.com','taco'];
 
 hosts.forEach(function (host) {
     // WARNING: -i 2 argument may not work in other platform like window
-    ping.promise.probe(host,{timeout: 5})
+
+});
+
+
+
+io.on('connection', function (socket)
+{
+  socket.emit('getData', {shit:'fuck'})
+
+  socket.on('requestUpdate', (data) =>
+  {
+    console.log();
+    ping.promise.probe(data.val,{timeout: 5})
     .then(function (res) {
       if(res.alive)
       {
-        console.log(res.avg);
+        console.log(res)
+        socket.emit('updateRecieved',{val: res.avg});
       }
       else
       {
@@ -25,18 +38,17 @@ hosts.forEach(function (host) {
     {
       console.log(err)
     });
-});
-
-
-
-io.on('connection', function (socket) {
-
-  //Dynamically create a bucnch of sockets that listen
+  });
   for(host of hosts)
   {
-    socket.on(host, function (from, msg) {
+    socket.on(host, function (from, msg)
+    {
       console.log('I received a private message by ', from, ' saying ', msg);
     });
   }
 
+
 });
+
+
+server.listen(3000);

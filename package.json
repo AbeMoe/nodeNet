@@ -27,6 +27,7 @@
     "express": "^4.17.1",
     "net-ping": "^1.2.3",
     "node-gyp": "^5.0.3",
+    "ping": "^0.2.2",
     "rebuild": "^0.1.2",
     "socket.io": "^2.2.0"
   }

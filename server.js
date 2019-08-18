@@ -1,37 +1,54 @@
 var ping = require ("net-ping");
 
+IPs = ['216.58.194.46','40.112.72.205','188.125.72.165']
 
 var options = {
     networkProtocol: ping.NetworkProtocol.IPv4,
     packetSize: 16,
     retries: 1,
-    sessionId: (process.pid % 65535),
-    timeout: 1000,
+    timeout: 1500,
     ttl: 128
 };
 
 var session = ping.createSession (options);
 
-session.pingHost ('8.8.8.8', function (error, target,sent, recv) {
-    var ms = recv - sent;
-    if (error)
-        console.log (target + ": " + error.toString ());
-    else
-        console.log (ms + 'ms');
-});
 
-session.pingHost ('192.168.1.5', function (error, target,sent, recv) {
-    var ms = recv - sent;
-    if (error)
-        console.log (target + ": " + error.toString ());
-    else
-        console.log (ms + 'ms');
-});
+async function pingCheck(target)
+{
+  let promise = new Promise((resolve,reject)=>
+  {
+    session.pingHost (target,
+    function (error, target,sent, recv)
+    {
+        var ms = recv - sent;
+        if (error)
+        {
+          reject(error);
+        }
+        else
+        {
+          resolve(ms);
+        }
+    })
+  })
+  return promise
+}
 
-session.pingHost ('8.8.8.27', function (error, target,sent, recv) {
-    var ms = recv - sent;
-    if (error)
-        console.log (target + ": " + error.toString ());
-    else
-        console.log (ms + 'ms');
-});
+
+for (ip of IPs)
+{
+  console.log(ip);
+  pingCheck(ip)
+    .then((resolution)=>
+    {
+    })
+    .catch((error)=>
+    {
+      if(error.name = 'RequestTimeOutError')
+      {
+        console.log("time out")
+      }
+      else
+        console.log("Other error");
+    });
+}

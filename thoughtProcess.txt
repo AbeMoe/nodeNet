@@ -1,0 +1,16 @@
+
+
+
+ServerStart()
+  For each IP
+    create a new socket session
+    send that socket the MS
+    
+
+//regular server running....
+Sockets.on(requestUpdate,socketID)
+  get the MS delay
+  emit that data to the socket
+  
+  
+  

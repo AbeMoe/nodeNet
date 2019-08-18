@@ -34,7 +34,7 @@ async function pingCheck(target)
   return promise
 }
 
-
+//We can use this as our socket setup
 for (ip of IPs)
 {
   console.log(ip);

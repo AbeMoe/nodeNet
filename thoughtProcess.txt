@@ -1,16 +1,11 @@
 
 
 
-ServerStart()
-  For each IP
-    create a new socket session
-    send that socket the MS
-    
+When someone connects to the server
 
-//regular server running....
-Sockets.on(requestUpdate,socketID)
-  get the MS delay
-  emit that data to the socket
-  
+create a socket for each IP
+
+Then, whenever that socket requests more data,
+send it from a generalized socket function (socket.on('id',...)
   
   

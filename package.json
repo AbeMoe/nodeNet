@@ -1,0 +1,31 @@
+{
+  "name": "nodenet",
+  "version": "1.0.0",
+  "description": "A network Analysis device to test latenc\r This project aims to create a real time tool to see network latency and packets dropped  using Nodejs to process the requests\r and send out the data via SocketIO and hopefully update all of that in real time to a chart in vuejs \r (using something from here preferably https://madewithvuejs.com/charts)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbeMoe/nodeNet.git"
+  },
+  "keywords": [
+    "network",
+    "analysis",
+    "ping",
+    "latency"
+  ],
+  "author": "ABe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbeMoe/nodeNet/issues"
+  },
+  "homepage": "https://github.com/AbeMoe/nodeNet#readme",
+  "dependencies": {
+    "net-ping": "^1.2.3",
+    "node-gyp": "^5.0.3",
+    "rebuild": "^0.1.2"
+  }
+}
